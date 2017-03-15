@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "Search";
+}
+@{ 
+    List<MPAS.Domain.Entities.User> users = ViewBag.ResultUsers as List<MPAS.Domain.Entities.User>;
+}
+@if (users.Count == 0)
+{
+    <p>Sorry, your query returned no results</p>
+}
+else
+{
+    foreach (var user in users)
+    {
+        <p>@user.Email</p>
+    }
+}

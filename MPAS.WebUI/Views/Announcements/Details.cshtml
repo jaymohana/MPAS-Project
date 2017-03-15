@@ -1,0 +1,42 @@
+﻿@model MPAS.Domain.Entities.Announcement
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2><b>Announcement Details</b></h2>
+
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+             <text>Subject</text>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.title)
+        </dd>
+
+        <dt>
+            <text>Description</text>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.description)
+        </dd>
+
+        <dt>
+            <text>Post Date</text>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.postDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    
+    @Html.ActionLink("Back to List", "Index")
+</p>

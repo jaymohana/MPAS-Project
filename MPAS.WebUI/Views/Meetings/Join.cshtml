@@ -1,0 +1,75 @@
+﻿@model IEnumerable<MPAS.Domain.Entities.Meeting>
+
+@{
+    ViewBag.Title = "Join";
+}
+
+<h2><b>Meetings</b></h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Mentor Name
+        </th>
+        <th>
+            Post Date
+        </th>
+        <th>
+            Available Slots
+        </th>
+        <th>
+            Venue
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.mentorName,"Mentor Name")
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.postDate, "Date Posted")
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.available, "Available")
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.venueName, "Venue")
+        </td>
+        @*<td>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="button" value="Join" onclick="@("window.location.href='" + @Url.Action("Join", "Meetings") + "'")" class="btn btn-default" />
+                </div>
+            </div>
+        </td>*@
+        <td>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    @*<input type="button" name="@item.postDate" id="@item.postDate" title="@item.postDate" value="Join" onclick="location.href='@Url.Action("Join", "Meetings",  new { id = item.Id })'" />*@
+                    @if (item.available < 1)
+                    {
+                        <p>Full</p>
+                    }
+                    else
+                    {
+                        if (item.professorID == User.Identity.Name)
+                        {
+                            <p>  Joined </p>
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Switch", "Edit", new { id = item.Id })
+                        }
+                    }
+                </div>
+            </div>
+        </td>
+    </tr>
+}
+
+</table>

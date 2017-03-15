@@ -1,0 +1,52 @@
+﻿@model MPAS.Domain.Entities.MenteeFeedback
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2><b>Feedback Details</b></h2>
+
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <text>Mentor Name</text>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MentorName)
+        </dd>
+
+        <dt>
+            <text>Attendance</text>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Attendance)
+        </dd>
+
+        <dt>
+            <text>Rating</text>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rating)
+        </dd>
+
+        <dt>
+            <text>Feedback Message</text>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FeedbackMessage)
+        </dd>
+
+
+    </dl>
+</div>
+<p>
+    
+    @Html.ActionLink("Back to List", "Index")
+</p>
+

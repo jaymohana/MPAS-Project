@@ -1,0 +1,156 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+    {
+        @Html.AntiForgeryToken()
+<header class="main-header">
+    @* BEGIN Logo *@
+    <a href="@Url.Action("Index", "Home")" class="logo">
+
+
+
+        <!-- mini logo for sidebar mini 50x50 pixels -->
+        <span class="logo-mini"><b>MPAS</b></span>
+        <!-- logo for regular state and mobile devices -->
+
+        <span class="logo-lg">
+
+        <b>Mentor Programme</b>
+
+        </span>
+    </a>
+
+
+    @* END Logo *@
+
+
+
+
+    @* BEGIN Header *@
+    <nav class="navbar navbar-static-top" role="navigation">
+        <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+        </a>
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+
+
+
+               
+
+                @* BEGIN User Account Menu *@
+                <li class="dropdown user user-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" >
+
+                        <span class="hidden-xs" style="color:#ffffff"> @User.Identity.Name</span>
+
+
+                    </a>
+
+
+                    <ul class="dropdown-menu" style="width: 185px">
+
+
+
+                      
+
+
+                        <li class="user-footer" >
+                            <div class="pull-left">
+                                <!--First pararmeter is anchor text, second is Action Name, third is Controller Name, fourth is route values, and fifth is html attributes-->
+                               
+                            </div>
+                            <div class="pull-right">
+                                <a id="x" class="btn btn-default btn-flat" href="javascript:document.getElementById('logoutForm').submit()">Sign out</a>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                @* END User Account Menu *@
+                @* BEGIN Control Sidebar Toggle Button *@
+                <li>
+                    <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                </li>
+                @* END Control Sidebar Toggle Button *@
+            </ul>
+        </div>
+    </nav>
+</header>
+    }
+}
+else
+{
+
+    <header class="main-header">
+        @* BEGIN Logo *@
+        <a href="@Url.Action("Index", "Home")" class="logo">
+            <!-- mini logo for sidebar mini 50x50 pixels -->
+            <span class="logo-mini"><b>MPAS</b></span>
+            <!-- logo for regular state and mobile devices -->
+            
+
+
+            <span class="logo-lg"><b>Mentor Programme</b>
+            
+            
+            
+            </span>
+        </a>
+        @* END Logo *@
+        @* BEGIN Header *@
+        <nav class="navbar navbar-static-top" role="navigation">
+            <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+
+
+
+
+
+                    @* BEGIN User Account Menu *@
+                     @*@{ 
+                         var db = new MPAS.Domain.Context.EFDbContext();
+                         var userId = HttpContext.Current.User.Identity.GetUserId();
+                         var user = db.Users.Find(userId);
+                         var professor = (from x in db.Professors where x.UserId == userId select x).FirstOrDefault();
+                                    }*@
+                    <li class="dropdown user user-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" >
+
+                            <text>Login</text>
+                          
+                            <span class="hidden-xs" style="color:#ffffff"> @User.Identity.Name</span>
+
+
+                        </a>
+                        <ul class="dropdown-menu" style="width: 185px">
+
+
+         
+
+
+                            <li class="user-footer">
+                                <div class="pull-left">
+                                    <!--First pararmeter is anchor text, second is Action Name, third is Controller Name, fourth is route values, and fifth is html attributes-->
+                                    @Html.ActionLink("Sign Up", "Register", "Account", null, new { @class = "btn btn-default btn-flat", @id = "s", @style = "" })
+                                </div>
+                                <div class="pull-right">
+                                    @Html.ActionLink("Sign In", "Login", "Account", null,new{ @class= "btn btn-default btn-flat" })                                   
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    @* END User Account Menu *@
+                    @* BEGIN Control Sidebar Toggle Button *@
+                    <li>
+                        <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                    </li>
+                    @* END Control Sidebar Toggle Button *@
+                </ul>
+            </div>
+        </nav>
+    </header>
+}

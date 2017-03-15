@@ -1,0 +1,54 @@
+﻿<aside class="main-sidebar">
+    <section class="sidebar">
+        @* BEGIN Search *@
+        
+        {
+            
+        }
+        @* END Search *@
+        @* BEGIN Menu *@
+
+        <ul class="sidebar-menu">
+            
+
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+
+
+            @if ((User.IsInRole("Admin")) || (User.IsInRole("Mentor")) || (User.IsInRole("Mentee")))
+            {
+                <li> @Html.ActionLink("Announcements", "Index", "Announcements") </li>
+            }
+
+            @if ((User.IsInRole("Admin")) || (User.IsInRole("Mentor")) || (User.IsInRole("Mentee")))
+            {
+                <li> @Html.ActionLink("Chatroom", "Create", "Chatrooms") </li>
+            }
+
+            @if ((User.IsInRole("Admin")) || (User.IsInRole("Mentor")) || (User.IsInRole("Mentee")))
+            {
+                <li> @Html.ActionLink("Meetings", "Index", "Meetings")</li>
+            }
+
+            @if ((User.IsInRole("Admin")) || (User.IsInRole("Mentor")) && (User.IsInRole("Mentee")))
+            {
+                <li> @Html.ActionLink("Feedback: Mentor", "Index", "Feedbacks") </li>
+
+            }
+
+            @if ((User.IsInRole("Mentee")) && !(User.IsInRole("Mentor")))
+            {
+                <li> @Html.ActionLink("Feedback: Mentee", "Index", "MenteeFeedbacks") </li>
+            }
+
+
+
+
+            @if((User.IsInRole("Admin")))
+            {
+                <li> @Html.ActionLink("Manage Users", "Create", "RoleUsers") </li>
+            }
+
+        </ul>
+        @* END Menu *@
+    </section>
+</aside>
